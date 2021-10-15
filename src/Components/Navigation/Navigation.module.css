@@ -1,0 +1,9 @@
+.navLink {
+  text-decoration: none;
+  margin-right: 20px;
+  color: black;
+}
+
+.activeNavLink {
+  color: blue;
+}
