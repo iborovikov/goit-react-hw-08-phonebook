@@ -1,17 +1,19 @@
-import { useDispatch, useSelector } from "react-redux"
-import { getUserName } from '../../Redux/User/user-selectors'
-import {logOut} from '../../Redux/User/user-operations'
+import { useDispatch, useSelector, connect } from "react-redux";
+import { getUserName } from '../../Redux/User/user-selectors';
+import { logOut } from '../../Redux/User/user-operations';
+import { Button } from 'react-bootstrap';
+import s from './userMenu.module.css';
 
 const LogedInData = () => {
-    const name = useSelector(getUserName)
-    const dispatch = useDispatch()
+    const name = useSelector(getUserName);
+    const dispatch = useDispatch();
 
     return (
-        <>
-            <p>Привет:{ name }</p>
-            <button type='button' onClick={() => dispatch(logOut())}>Выйти</button>
-        </>
+        <div className={s.userMenuContainer}>
+            <p>Привет: {name}</p>
+            <Button className={s.userMenuBtn} type='button' onClick={() => dispatch(logOut())}>Выйти</Button>
+        </div>
     )
 }
 
-export default LogedInData
+export default connect()(LogedInData);

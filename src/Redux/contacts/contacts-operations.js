@@ -34,9 +34,13 @@ const deleteContact = createAsyncThunk('contacts/deleteContact',
     }
 );
 const correctContact = createAsyncThunk('contacts/correctContact',
-    async (id) => {
+    async ({id, name, number}) => {
         try {
-            await axios.patch(`/contacts/${id}`)
+            const body = {
+                name,
+                number
+            }
+            await axios.patch(`/contacts/${id}`, body)
         } catch (error) {
             
         }

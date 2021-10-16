@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux"
-import { Redirect, Route } from "react-router"
-import {getIsLogedIn} from '../Redux/User/user-selectors'
-
-
-
+import { connect, useSelector } from "react-redux";
+import { Redirect, Route } from "react-router";
+import { getIsLogedIn } from '../Redux/User/user-selectors';
 
 
 const PrivateRoute = ({ children, ...routProps }) => {
@@ -13,4 +10,4 @@ const PrivateRoute = ({ children, ...routProps }) => {
 
 };
 
-export default PrivateRoute
+export default connect()(PrivateRoute)

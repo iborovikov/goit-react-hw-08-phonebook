@@ -1,15 +1,19 @@
+import { useSelector, connect } from "react-redux";
+import { getIsModalOpen } from '../contact-selectors';
+import CorrectionModal from '../Modal/CorrectionModal';
 import Contact from "./Contact";
+import { ListGroup } from 'react-bootstrap';
 
-function ContactList () {
+function ContactList() {
+    const isModalOpen = useSelector(getIsModalOpen)
+
     return (
-        <>
+        <ListGroup>
             <h2>Список контактов</h2>
-            <ul>
-                <Contact />
-            </ul>
-        </>
-    
+            <Contact />
+            {isModalOpen && <CorrectionModal />}
+        </ListGroup>
     );
 };
 
-export default ContactList;
+export default connect()(ContactList) ;

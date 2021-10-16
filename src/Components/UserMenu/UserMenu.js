@@ -1,15 +1,14 @@
-import { useSelector } from 'react-redux'
-import LogedInData from './LogedInData'
-import LogedOutNav from './LogedOutNav'
-import {getIsLogedIn} from '../../Redux/User/user-selectors'
+import { connect, useSelector } from 'react-redux';
+import LogedInData from './LogedInData';
+import LogedOutNav from './LogedOutNav';
+import { getIsLogedIn } from '../../Redux/User/user-selectors';
 
 
 
 const UserMenu = () => {
-    
     const isLogedIn = useSelector(getIsLogedIn);
 
-    return (<>{isLogedIn ? <LogedInData /> : <LogedOutNav />}</>)
+    return (<>{isLogedIn ? <LogedInData /> : <LogedOutNav />}</>);
 };
 
-export default UserMenu;
+export default connect()(UserMenu);

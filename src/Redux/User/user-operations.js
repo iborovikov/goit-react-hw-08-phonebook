@@ -9,8 +9,7 @@ const token = {
     unset() {
         axios.defaults.headers.common.Authorization = ''
     }
-}
-
+};
 
 const registration = createAsyncThunk('users/registration', async (credantials) => {
     try {
@@ -28,9 +27,10 @@ const logedIn = createAsyncThunk('users/logedIn', async (credantials) => {
         token.set(data.token);
         return data;
     } catch (error) {
+        console.log(error)
         return error
     }
-})
+});
 
 const logOut = createAsyncThunk('users/logOut', async () => {
     try {
@@ -39,8 +39,8 @@ const logOut = createAsyncThunk('users/logOut', async () => {
     } catch (error) {
         return error
     }
-})
-const getCurrentUserData = createAsyncThunk('user/getCurrentUserData', async (_, {getState}) => {
+});
+const getCurrentUserData = createAsyncThunk('user/getCurrentUserData', async (_, { getState }) => {
     const persistedToken = getState().user.token
     if (persistedToken === null) {
         return ({
@@ -57,11 +57,10 @@ const getCurrentUserData = createAsyncThunk('user/getCurrentUserData', async (_,
             email: data.email,
             isLogedIn: true
         })
-       
     } catch (error) {
-
+        return error
     }
-})
+});
 
 
 
@@ -70,4 +69,4 @@ export {
     logedIn,
     logOut,
     getCurrentUserData
-}
+};

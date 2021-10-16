@@ -3,6 +3,8 @@ import { createSelector } from "reselect";
 const getContacts = (state) => state.contacts.items;
 const getFilter = (state) => state.contacts.filter;
 const getTotal = (state) => state.contacts.total;
+const getMutableContactId = (state) => state.contacts.mutableContactId;
+const getIsModalOpen = (state) => state.contacts.isModalOpen
 
 
 const getVisibleContacts = createSelector(
@@ -18,4 +20,6 @@ export {
     getFilter,
     getTotal,
     getVisibleContacts,
+    getMutableContactId,
+    getIsModalOpen
 };

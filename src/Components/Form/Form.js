@@ -1,16 +1,15 @@
-// import PropTypes from 'prop-types';
-import s from '../Form/Form.module.css';
 import { useState } from "react";
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { getContacts } from '../contact-selectors';
 import { setFilter } from '../../Redux/contacts/contact-actions';
 import { postContact } from '../../Redux/contacts/contacts-operations';
+import { Form, Button } from 'react-bootstrap';
 
 
-function Form() {
+function AddContactForm() {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const contacts = useSelector(getContacts)
+    const contacts = useSelector(getContacts);
     const dispatch = useDispatch();
 
     const resetFormInput = () => {
@@ -56,49 +55,37 @@ function Form() {
     };
         
     return (
-        <>
-            <h2>Добавление нового контакта</h2>
-            <form className={s.form} onSubmit={onSubmit}>
-            <label className={s.label}>Name
-                <input
-                    className={s.input}
+
+        <Form onSubmit={onSubmit}>
+            <Form.Text className="text-bolt">
+                Добавление контакта
+            </Form.Text>
+            <Form.Group className="mb-3" >
+                <Form.Label >Имя контакта</Form.Label>
+                <Form.Control
                     type="text"
                     name="name"
                     value={name}
                     onChange={handleInputChange}
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-                    required
-                />
-            </label>
-            <label className={s.label}>Number
-                <input
-                    className={s.input}
+                    required />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+                <Form.Label >Номер контакта</Form.Label>
+                <Form.Control
                     type="tel"
                     name="phoneNumber"
                     value={phoneNumber}
                     onChange={handleInputChange}
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-                    required
-                    />
-            </label>
-            <button className={s.btn} type="submit" >Add contact</button>
-        </form>
-        </>
+                    required/>
+            </Form.Group>
+            <Button type="submit" >Добавить конткакт</Button>
+            </Form>
     );
 };
 
-
-
-
-export default connect()(Form);
-
-// Form.propTypes = {
-//     setFilter: PropTypes.func.isRequired,
-//     contacts: PropTypes.arrayOf(PropTypes.shape({
-//         name: PropTypes.string.isRequired,
-//         number: PropTypes.string.isRequired,
-//         id: PropTypes.number.isRequired
-//     }))
-// };
+export default connect()(AddContactForm);

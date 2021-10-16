@@ -7,7 +7,6 @@ const initialState = {
     token: null,
     isLogedIn: false,
     isRefreshing: false,
-    error: ''
 }
 
 const userSlice = createSlice({
