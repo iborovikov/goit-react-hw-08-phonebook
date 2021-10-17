@@ -1,0 +1,1 @@
+{"version":3,"sources":["Components/HomeView/HomeView.js"],"names":["HomeView"],"mappings":"mKAIeA,UAJE,WACb,OAAQ","file":"static/js/10.05ed3ad5.chunk.js","sourcesContent":["const HomeView = () => {\r\n    return (<h1>Приложение для хранения контактов</h1>)\r\n}\r\n\r\nexport default HomeView;"],"sourceRoot":""}
