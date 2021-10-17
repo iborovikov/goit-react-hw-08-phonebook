@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { logedIn } from '../../Redux/User/user-operations';
-import { Form, Button } from 'react-bootstrap/';
+import {getIsPasswordCorrect} from '../../Redux/User/user-selectors'
+import { Form, Button, Alert } from 'react-bootstrap/';
+
 
 
 const Login = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const isPasswordCorrect = useSelector(getIsPasswordCorrect);
 
     const handleInputChange = (e) => {
         const type = e.currentTarget.name;
@@ -54,7 +58,9 @@ const Login = () => {
             <Button variant="primary" type="submit">
                 Войти
             </Button>
+            {!isPasswordCorrect && <Alert variant={'danger'} style={{marginTop: 15}}>Вы ввели не верный пароль или адрес электронной почты</Alert>}
         </Form>
+
     );
 };
 

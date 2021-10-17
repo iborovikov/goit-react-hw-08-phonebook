@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { registration } from '../../Redux/User/user-operations';
-import { Form, Button } from 'react-bootstrap/';
+import { getIsUserAlradyRegister } from '../../Redux/User/user-selectors';
+import { Form, Button, Alert } from 'react-bootstrap/';
 
 const Registration = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const isUserAlradyRegister = useSelector(getIsUserAlradyRegister);
 
     const dispatch = useDispatch();
 
@@ -70,6 +74,11 @@ const Registration = () => {
             <Button variant="primary" type="submit">
                 Зарегистрировать
             </Button>
+            {isUserAlradyRegister &&
+                <Alert variant={'danger'} style={{ marginTop: 15 }}>
+                    Пользователь зарегистрирован, воспользуйтесь другой почтой для регистрации или авторизируйтесь
+                    <NavLink to="/login"> тут</NavLink>
+                </Alert>}
         </Form>
     )
 }

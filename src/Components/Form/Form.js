@@ -57,9 +57,7 @@ function AddContactForm() {
     return (
 
         <Form onSubmit={onSubmit}>
-            <Form.Text className="text-bolt">
-                Добавление контакта
-            </Form.Text>
+                <h2>Добавление контакта</h2>
             <Form.Group className="mb-3" >
                 <Form.Label >Имя контакта</Form.Label>
                 <Form.Control
